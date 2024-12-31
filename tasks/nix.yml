@@ -18,3 +18,16 @@
   ansible.builtin.file:
     path: /tmp/nix-install.sh
     state: absent
+
+- name: Ensure ~/.config/nix directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.config/nix"
+    state: directory
+    mode: '0755'
+
+- name: Create nix.conf with experimental features enabled
+  ansible.builtin.copy:
+    dest: "{{ ansible_env.HOME }}/.config/nix/nix.conf"
+    content: |
+      experimental-features = nix-command flakes
+    mode: '0644' 
