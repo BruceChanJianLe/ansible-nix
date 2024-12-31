@@ -1,0 +1,20 @@
+- name: Download Nix installer
+  ansible.builtin.get_url:
+    url: https://nixos.org/nix/install
+    dest: /tmp/nix-install.sh
+    mode: '0755'
+
+- name: Run Nix installer interactively
+  ansible.builtin.expect:
+    command: "bash /tmp/nix-install.sh --daemon"
+    responses:
+      "\\[y/n\\]": "y"
+      "Nix won't work in active shell sessions until you restart them.": ""
+      "I don't support your init system yet; you may want to add nix-daemon manually.": ""
+  become: yes
+  timeout: 600
+
+- name: Remove Nix installer script
+  ansible.builtin.file:
+    path: /tmp/nix-install.sh
+    state: absent
