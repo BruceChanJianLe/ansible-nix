@@ -7,7 +7,7 @@ Install dependencies (ansible, git)
 sudo apt install ansible git -y
 ```
 
-Setting up new laptop
+Installing Nix with Ansible!
 ```bash
 ansible-pull -U https://github.com/brucechanjianle/ansible-nix --ask-become-pass
 ```
