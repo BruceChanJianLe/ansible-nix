@@ -49,10 +49,10 @@ sudo groupdel nixbld
 ```
 
 Other places where you may want to clean up:
-- /etc/bash.bashrc
-- /etc/bashrc
-- /etc/profile
-- /etc/zsh/zshrc
-- /etc/zshrc
+- `/etc/bash.bashrc`
+- `/etc/bashrc`
+- `/etc/profile`
+- `/etc/zsh/zshrc`
+- `/etc/zshrc`
 
 [official link](https://nix.dev/manual/nix/2.18/installation/uninstall)
