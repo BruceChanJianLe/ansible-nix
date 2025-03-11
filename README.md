@@ -28,3 +28,31 @@ version 0.39.1 and at the writing time of this article, nix `hyprland` is on ver
 
 Here, there is a website where it stores the hash to the previous version of software
 on nix. https://www.nixhub.io/
+
+## Uninstall
+
+**Multi User**:
+```bash
+# Remove Nix daemon service
+sudo systemctl stop nix-daemon.service
+sudo systemctl disable nix-daemon.socket nix-daemon.service
+sudo systemctl daemon-reload
+
+# Remove files created by Nix:
+sudo rm -rf /etc/nix /etc/profile.d/nix.sh /etc/tmpfiles.d/nix-daemon.conf /nix ~root/.nix-channels ~root/.nix-defexpr ~root/.nix-profile
+
+# Remove build users and their groups
+for i in $(seq 1 32); do
+  sudo userdel nixbld$i
+done
+sudo groupdel nixbld
+```
+
+Other places where you may want to clean up:
+- /etc/bash.bashrc
+- /etc/bashrc
+- /etc/profile
+- /etc/zsh/zshrc
+- /etc/zshrc
+
+[official link](https://nix.dev/manual/nix/2.18/installation/uninstall)
